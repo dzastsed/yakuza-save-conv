@@ -3,6 +3,16 @@ from tkinter import filedialog, Menu, messagebox
 from tkinter import *
 from tkinter.ttk import *
 from binary_reader import BinaryReader
+from playsound import playsound
+
+
+def close():
+    exit()
+
+
+def play():
+    playsound('Electrodynamix.mp3')
+
 
 
 class File:
@@ -77,7 +87,6 @@ class File:
         messagebox.showinfo('Info','Conversion from PC to PS3 success!!')
 
 
-
 filemanagement = File()
 
 
@@ -92,25 +101,28 @@ menu = Menu(window)
 new_item = Menu(menu, tearoff=0)
 new_item.add_command(label='Open PC save...', command=filemanagement.choose_pc_input)
 new_item.add_command(label='Open PS3 save...', command=filemanagement.choose_ps3_input)
+new_item.add_command(label='Exit', command=close)
 menu.add_cascade(label='File', menu=new_item)
 window.config(menu=menu)
 
 lbl1 = Label(window, text="Selected PS3 save path goes here...") #ps3 save input path
-lbl1.grid(column=0, row=0)
+lbl1.pack()
 lbl2 = Label(window, text="Selected PC output path goes here...") #output path pc
-lbl2.grid(column=0, row=3)
+lbl2.pack(pady=5)
 lbl3 = Label(window, text="Selected PC save path goes here...") #pc save input path
-lbl3.grid(column=0, row=4)
+lbl3.pack(pady=10)
 lbl4 = Label(window, text="Selected PS3 output path goes here...") #output path ps3
-lbl4.grid(column=0, row=5)
+lbl4.pack(pady=15)
 btn1 = Button(window, text="Choose PS3 output directory", command=filemanagement.choose_output_ps3)
-btn1.pack(side="bottom")
+btn1.pack(side="bottom", anchor = NW)
 btn4 = Button(window, text="Choose PC output directory", command=filemanagement.choose_output_pc)
-btn4.grid(column=12, row=6)
+btn4.pack(side="bottom", anchor = NW)
 btn2 = Button(window, text="Convert PS3 -> PC!!!", command=filemanagement.le_to_be)
-btn2.grid(column=12, row=7)
+btn2.pack(side="bottom", anchor = NW)
 btn3 = Button(window, text="Convert PC -> PS3!!!", command=filemanagement.be_to_le)
-btn3.grid(column=12, row=8)
+btn3.pack(side="bottom", anchor = NW)
 
+btn5 = Button(window, text='Music???', command=play)
+btn5.pack(side="bottom", anchor = SW)
 
 window.mainloop()
