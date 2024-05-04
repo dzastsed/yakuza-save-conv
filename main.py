@@ -4,45 +4,50 @@ import ui
 from tkinter import filedialog, messagebox
 
 
-class File:
+class Startup:
+    def on(self):
+        messagebox.showinfo('Hello!', 'Welcome to Yakuza save converter prototype!')
+
+
+class File(Startup):
     def __init__(self, ui_instance):
-        self.input_ps3 = []
-        self.input_pc = []
-        self.output_ps3 = []
-        self.output_pc = []
+        self.__input_ps3 = []
+        self.__input_pc = []
+        self.__output_ps3 = []
+        self.__output_pc = []
         self.ui = ui_instance
 
     def choose_ps3_input(self):
         file = filedialog.askopenfilename()
         if file:
-            self.input_ps3.append(file)
+            self.__input_ps3.append(file)
             self.ui.lbl1.configure(text="Chosen save file: " + file)
             print(f"DEBUG: chosen PS3 savefile: {file}")
 
     def choose_pc_input(self):
         file_pc = filedialog.askopenfilename()
         if file_pc:
-            self.input_pc.append(file_pc)
+            self.__input_pc.append(file_pc)
             self.ui.lbl3.configure(text="Chosen save file: " + file_pc)
             print(f"DEBUG: chosen PC savefile: {file_pc}")
 
     def choose_output_ps3(self):
         dir = filedialog.askdirectory()
         if dir:
-            self.output_ps3.append(dir)
+            self.__output_ps3.append(dir)
             self.ui.lbl2.configure(text="Chosen PS3 save output path: " + dir)
             print(f"DEBUG: chosen output directory: {dir}")
 
     def choose_output_pc(self):
         dir = filedialog.askdirectory()
         if dir:
-            self.output_pc.append(dir)
+            self.__output_pc.append(dir)
             self.ui.lbl4.configure(text="Chosen PC save output path: " + dir)
             print(f"DEBUG: chosen output directory: {dir}")
 
     def le_to_be(self):
-        output_file_ps3 = os.path.join(*self.output_ps3, "OUTPUT_PC")
-        input_file_ps3 = open(os.path.join(*self.input_ps3), "rb")
+        output_file_ps3 = os.path.join(*self.__output_ps3, "OUTPUT_PC")
+        input_file_ps3 = open(os.path.join(*self.__input_ps3), "rb")
         save1 = BinaryReader(input_file_ps3.read(), False)
         converted_file = BinaryReader(bytearray(), True)
         bytecount = int(save1.size() / 4)
@@ -54,9 +59,9 @@ class File:
         print(f"DEBUG: CONVERSION PS3 -> PC SUCCESS!!!")
         messagebox.showinfo('Info', 'Conversion from PS3 to PC success!!')
 
-    def be_to_le(self): #still a WIP as main focus is PS3->PC conversion at this moment
-        output_file_pc = os.path.join(*self.output_pc, "OUTPUT_PS3")
-        input_file_pc = open(os.path.join(*self.input_pc), "rb")
+    def be_to_le(self):  # still a WIP as main focus is PS3->PC conversion at this moment
+        output_file_pc = os.path.join(*self.__output_pc, "OUTPUT_PS3")
+        input_file_pc = open(os.path.join(*self.__input_pc), "rb")
         save2 = BinaryReader(input_file_pc.read(), True)
         converted_file = BinaryReader(bytearray(), False)
         bytecount = int(save2.size() / 4)
@@ -73,6 +78,8 @@ class File:
 
 
 def main():
+    startup = Startup()
+    startup.on()
     file_manager = File(None)
     main_app = ui.UserInterface(file_manager)
     file_manager.ui = main_app
