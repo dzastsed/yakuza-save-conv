@@ -3,6 +3,9 @@ from binary_reader import BinaryReader
 from tkinter import filedialog, messagebox
 from abc import ABC, abstractmethod
 from ui import SingletonClass
+import winsound
+import datetime
+from datetime import time, datetime
 
 
 class Startup(ABC):
@@ -95,7 +98,25 @@ class File(Startup):
         exit()
 
 
+def my_decorator(func):
+    def wrapper():
+        sample_time = 0
+        now = datetime.now().hour
+        if sample_time == now:
+            return func()
+        else:
+            print("easter egg music requirements unmet :(")
+
+    return wrapper
+
+
+@my_decorator
+def easteregg():
+    winsound.PlaySound('easteregg.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
+
+
 if __name__ == "__main__":
+    easteregg()
     file_manager = File(None)
     file_manager.on()
     main_app = SingletonClass(file_manager)
