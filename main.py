@@ -88,7 +88,7 @@ class File(Startup):
             print(f"DEBUG: CONVERSION PC -> PS3 SUCCESS!!!")
             messagebox.showinfo('Info', 'Conversion from PC to PS3 success!!')
         elif not self.__output:
-            print(f"DEBUG: Output path PC -> PS3 not selected.")
+            print(f"DEBUG: Output path not selected.")
             messagebox.showinfo('Info', 'You did not select output path!')
         else:
             print(f"DEBUG: no PC savefile chosen")
