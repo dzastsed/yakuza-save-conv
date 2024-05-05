@@ -1,4 +1,3 @@
-from tkinter import filedialog, Menu, messagebox
 from tkinter import *
 from tkinter.ttk import *
 

@@ -29,6 +29,8 @@ class File(Startup):
             self.__input_ps3.append(file)
             self.ui.lbl1.configure(text="Chosen save file: " + file)
             print(f"DEBUG: chosen PS3 savefile: {file}")
+        else:
+            print(f"DEBUG: no PS3 savefile chosen")
 
     def choose_pc_input(self):
         file_pc = filedialog.askopenfilename()
@@ -36,6 +38,8 @@ class File(Startup):
             self.__input_pc.append(file_pc)
             self.ui.lbl3.configure(text="Chosen save file: " + file_pc)
             print(f"DEBUG: chosen PC savefile: {file_pc}")
+        else:
+            print(f"DEBUG: no PC savefile chosen")
 
     def choose_output_ps3(self):
         dir = filedialog.askdirectory()
@@ -43,13 +47,17 @@ class File(Startup):
             self.__output_ps3.append(dir)
             self.ui.lbl2.configure(text="Chosen PS3 save output path: " + dir)
             print(f"DEBUG: chosen output directory: {dir}")
+        else:
+            print(f"DEBUG: no PS3 save output dir chosen")
 
     def choose_output_pc(self):
-        dir = filedialog.askdirectory()
-        if dir:
-            self.__output_pc.append(dir)
-            self.ui.lbl4.configure(text="Chosen PC save output path: " + dir)
-            print(f"DEBUG: chosen output directory: {dir}")
+        dir_pc = filedialog.askdirectory()
+        if dir_pc:
+            self.__output_pc.append(dir_pc)
+            self.ui.lbl4.configure(text="Chosen PC save output path: " + dir_pc)
+            print(f"DEBUG: chosen output directory: {dir_pc}")
+        else:
+            print(f"DEBUG: no PC save output dir chosen")
 
     def le_to_be(self):
         output_file_ps3 = os.path.join(*self.__output_ps3, "OUTPUT_PC")
@@ -83,13 +91,9 @@ class File(Startup):
         exit()
 
 
-def main():
+if __name__ == "__main__":
     file_manager = File(None)
     file_manager.on()
     main_app = ui.UserInterface(file_manager)
     file_manager.ui = main_app
     main_app.mainloop()
-
-
-if __name__ == "__main__":
-    main()
