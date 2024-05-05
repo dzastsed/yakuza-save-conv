@@ -2,11 +2,14 @@ import os
 from binary_reader import BinaryReader
 import ui
 from tkinter import filedialog, messagebox
+from abc import ABC, abstractmethod
 
 
-class Startup:
+class Startup(ABC):
+
+    @abstractmethod
     def on(self):
-        messagebox.showinfo('Hello!', 'Welcome to Yakuza save converter prototype!')
+        pass
 
 
 class File(Startup):
@@ -16,6 +19,9 @@ class File(Startup):
         self.__output_ps3 = []
         self.__output_pc = []
         self.ui = ui_instance
+
+    def on(self):
+        messagebox.showinfo('Hello!', 'Welcome to Yakuza save converter prototype!')
 
     def choose_ps3_input(self):
         file = filedialog.askopenfilename()
@@ -59,7 +65,7 @@ class File(Startup):
         print(f"DEBUG: CONVERSION PS3 -> PC SUCCESS!!!")
         messagebox.showinfo('Info', 'Conversion from PS3 to PC success!!')
 
-    def be_to_le(self):  # still a WIP as main focus is PS3->PC conversion at this moment
+    def be_to_le(self):  # just a small test as main focus is PS3->PC conversion at this moment
         output_file_pc = os.path.join(*self.__output_pc, "OUTPUT_PS3")
         input_file_pc = open(os.path.join(*self.__input_pc), "rb")
         save2 = BinaryReader(input_file_pc.read(), True)
@@ -78,9 +84,8 @@ class File(Startup):
 
 
 def main():
-    startup = Startup()
-    startup.on()
     file_manager = File(None)
+    file_manager.on()
     main_app = ui.UserInterface(file_manager)
     file_manager.ui = main_app
     main_app.mainloop()
