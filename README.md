@@ -54,10 +54,14 @@ For this preview, I will use RPCS3 emulator with PS3 version of Yakuza 5 install
 8. Your save should be ready to use, enjoy!
 
 Here are pictures of before and after:
+![a2](https://github.com/dzastsed/yakuza-save-conv/assets/63074962/0e91e2d6-fe8a-4f4c-961e-968a4f4b8941)
+![b2](https://github.com/dzastsed/yakuza-save-conv/assets/63074962/a4d2a684-6f2e-4b4f-869a-ef3e48d29739)
+*save file loaded in emulator*
 
-placeholder1
 
-placeholder2
+![a1](https://github.com/dzastsed/yakuza-save-conv/assets/63074962/1692daf3-a534-4a70-91c7-208d16bb812a)
+![b](https://github.com/dzastsed/yakuza-save-conv/assets/63074962/3126af45-4896-424d-a81b-fe99ec211cbb)
+*same save after conversion loaded in game*
 
 
 ## Known issues
