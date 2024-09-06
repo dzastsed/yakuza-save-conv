@@ -71,3 +71,5 @@ Here are pictures of before and after:
 ## Conclusion
 Writing this tool was a fun experience. I learned how to make TKInter GUI,  but, most importantly, learned how to make code less "spaghetti". This is also not the end for this tool! I intend to eventually add support for other titles, and fix up issues mentioned before. Eventually I also plan to combine it with another tool I made a while back which allows importing saves to steam cloud save folders.
 
+## Credits
+Timo654 - for his sample conversion code and knowledge about yakuza overall.
